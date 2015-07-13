@@ -1,6 +1,8 @@
-# Tag-Input
+# Tag-Input 
 
-### 文本域添加删除tag插件：
+:grinning::smirk::relaxed::rabbit::rabbit::rabbit:
+
+### 文本域添加删除tag插件：:tea:
 
 * 点击tag按钮插入到文本域中用`，`分隔；
 
@@ -8,12 +10,13 @@
 
 * 再次点击置灰tag按钮可以删除文本域中第一个有效tag，按钮自身恢复，且如果还存在其他有效tag判定为失效(因为下方按钮非置灰了)
 ；
+
 * 手动编辑文本域中的有效tag后，下方相应置灰的tag按钮恢复(即该tag失效)；
 
 * 文本域的高度随输入文字的多少动态改变；
 
 =======
-### 引用方法：
+### 引用方法：:coffee:
 ```js
 var t = new TagBox({ 
 	iptId : 'tag-ipt',  // 文本域id
