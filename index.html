@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<style>
+div,input,ul,li { margin: 0; padding: 0; font: 14px/1.3 '';}
+.tag-box { width: 300px; padding: 10px; margin: 30px auto 0; border: 5px solid #eee;}
+#tag-ipt { box-sizing: border-box; width: 300px; height: 100px; border: 1px solid #ccc; border-radius: 3px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2); padding: 10px; outline: none; }
+#tag-ipt:focus { border-color: #74B4F2; box-shadow: 1px 1px 5px rgba(116,180,242,0.6);}
+#tag-list { list-style: none; padding-top: 10px;}
+#tag-list li { display: inline-block; padding: 3px 10px; border: 1px solid #aaa; border-radius: 3px; cursor: pointer; margin: 8px 3px 0 0; white-space: nowrap;}
+#tag-list li.dis { background: #ccc; color: #666; border-color: #666;}
+/*#tag-list li:hover { background: rgba(238,238,238,0.5)}*/
+</style>
+</head>
+<!-- 
+
+【插入】
+1点击tag插入到输入框最后，标签标记置灰，tag后面自动追加一个逗号‘，’
+
+【删除】
+1点击backspace时判断，若为标签且该标签已置灰，删除整句标签及追加的逗号，标签激活。若标签没置灰，则跳过
+2点delete（同1）
+3点击置灰标签，将输入框中的标签删除，若没有标签（被修改所以不匹配了），则跳过
+		
+
+ -->
+<body>
+<!-- <div contenteditable="true" id="a1">11231313</div> -->
+<div class="tag-box">
+	<!-- <input type="text" value="" id="tag-ipt"/> -->
+	<textarea style="overflow:hidden; resize:none; word-break: break-all;" id="tag-ipt" placeholder="默认提示"></textarea>
+	<ul id="tag-list">		
+		<li>hello</li>
+		<li>word</li>
+		<li>你好</li>
+		<li>一个标签</li>
+		<li>AAAA</li>
+		<li>BBBB</li>
+	</ul>
+</div>
+<div id="text"></div>
+</body>
+<script src="tagBox.js"></script>
+<script>
+window.onload = function(){
+	if(document.getElementById('tag-ipt') && document.getElementById('tag-list')){
+		var t = new TagBox({ 
+			iptId : 'tag-ipt',  // 输入框id
+			listId: 'tag-list', // 标签ul的id
+			tagName: 'li',	// tag标签名
+			disclass:'dis', // 置灰的class名
+			toChange : function(obj){
+		        change(obj);
+		    }
+		});
+	}
+
+	change(document.getElementById('tag-ipt'));
+	function change(obj){
+		if(!document.getElementById('div')){
+			var oDiv = document.createElement('div');
+			oDiv.id = 'div';
+			oDiv.style.fontSize = '14px';
+			oDiv.style.lineHeight = '20px';
+			oDiv.style.position = 'absolute';
+			oDiv.style.left = '-9999px';
+			oDiv.style.top = '-9999px';
+			oDiv.style.width = '279px';
+			oDiv.style.wordBreak = 'break-all';
+			document.body.appendChild(oDiv);
+		} else { 
+			var oDiv = document.getElementById('div');
+		}
+		oDiv.innerHTML = obj.value;
+		obj.style.fontSize = '14px';
+		obj.style.lineHeight = '20px';
+		if(oDiv.clientHeight == 0) obj.style.height = '40px';
+		else obj.style.height = oDiv.offsetHeight + 20 + 'px';
+	}
+};
+</script>
+</html>
