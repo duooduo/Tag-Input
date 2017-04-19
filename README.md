@@ -1,7 +1,7 @@
 # Tag-Input 
-
-:grinning::smirk::relaxed::rabbit::rabbit::rabbit:
-
+ 
+##访问地址：[线上demo](http://duooduo.github.io/Tag-Input/) 
+ 
 ### 文本域添加删除tag插件：:tea:
 
 * 点击tag按钮插入到文本域中用`，`分隔；
